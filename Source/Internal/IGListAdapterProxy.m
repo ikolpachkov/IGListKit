@@ -41,6 +41,11 @@ static BOOL isInterceptedSelector(SEL sel) {
             sel == @selector(scrollViewWillBeginDragging:) ||
             sel == @selector(scrollViewDidEndDragging:willDecelerate:) ||
             sel == @selector(scrollViewDidEndDecelerating:) ||
+            // Focus
+            sel == @selector(collectionView:canFocusItemAtIndexPath) ||
+            sel == @selector(collectionView:shouldUpdateFocusInContext) ||
+            sel == @selector(collectionView:didUpdateFocusInContext:withAnimationCoordinator:) ||
+            sel == @selector(indexPathForPreferredFocusedViewInCollectionView:) ||
             // IGListCollectionViewDelegateLayout
             sel == @selector(collectionView:layout:customizedInitialLayoutAttributes:atIndexPath:) ||
             sel == @selector(collectionView:layout:customizedFinalLayoutAttributes:atIndexPath:)
