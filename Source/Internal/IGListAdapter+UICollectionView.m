@@ -224,6 +224,52 @@
     [sectionController didUnhighlightItemAtIndex:indexPath.item];
 }
 
+
+// Focus
+- (BOOL)collectionView:(UICollectionView *)collectionView canFocusItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    id<UICollectionViewDelegate> collectionViewDelegate = self.collectionViewDelegate;
+    if ([collectionViewDelegate respondsToSelector:@selector(collectionView:canFocusItemAtIndexPath:)]) {
+        
+        return [collectionViewDelegate collectionView:collectionView canFocusItemAtIndexPath:indexPath];
+    } else {
+        return YES;
+    }
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldUpdateFocusInContext:(UICollectionViewFocusUpdateContext *)context {
+    
+    id<UICollectionViewDelegate> collectionViewDelegate = self.collectionViewDelegate;
+    if ([collectionViewDelegate respondsToSelector:@selector(collectionView:shouldUpdateFocusInContext:)]) {
+        
+        return [collectionViewDelegate collectionView:collectionView shouldUpdateFocusInContext:context];
+    } else {
+        return YES;
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didUpdateFocusInContext:(UICollectionViewFocusUpdateContext *)context withAnimationCoordinator:(UIFocusAnimationCoordinator *)coordinator {
+    
+    id<UICollectionViewDelegate> collectionViewDelegate = self.collectionViewDelegate;
+    if ([collectionViewDelegate respondsToSelector:@selector(collectionView:didUpdateFocusInContext:withAnimationCoordinator:)]) {
+        
+        return [collectionViewDelegate collectionView:collectionView didUpdateFocusInContext:context withAnimationCoordinator: coordinator];
+    }
+}
+
+- (nullable NSIndexPath *)indexPathForPreferredFocusedViewInCollectionView:(UICollectionView *)collectionView {
+    
+    id<UICollectionViewDelegate> collectionViewDelegate = self.collectionViewDelegate;
+    if ([collectionViewDelegate respondsToSelector:@selector(indexPathForPreferredFocusedViewInCollectionView:)]) {
+        
+        return [collectionViewDelegate indexPathForPreferredFocusedViewInCollectionView: collectionView];
+    } else {
+        return NULL;
+    }
+}
+
+
+
 #pragma mark - UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
